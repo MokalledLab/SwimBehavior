@@ -17,7 +17,6 @@ library(svDialogs)
 library(MASS)
 library(RColorBrewer)
 library(dplyr)
-library(rowr)
 library(ggplot2)
 library(tidyr)
 library(stringi)
@@ -548,9 +547,6 @@ CalculateDirectionsWithFlow <- function(Y, flow_rate) {
   # TODO (LATER) write a more efficient solution.
   MM <- function(i) {
     # Full R frame window begins to slide late, stops sliding early
-    # i_start = min(max(0, i-(R//2)), len(x)-R)
-    # i_end = min(max(R, i+(R//2)), len(x))
-    # Partial R frame window at endpoints
     i_start <- max(1, i - floor(MOVING_MEAN_WIDTH / 2))
     i_end <- min(i + floor(MOVING_MEAN_WIDTH / 2), length(Y))
     return(mean(Y[i_start:i_end]))
